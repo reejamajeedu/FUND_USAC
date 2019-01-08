@@ -17,7 +17,7 @@
 /*CSS for Flexbox in Connect America Landing Page*/
 .fixed-size-container {
   	max-width: 1400px;
- 	  margin: 32px auto 0 auto;
+ 	margin: 32px auto 0 auto;
   	background-color: #FFF;
   	padding: 30px 0;
   	height:50px;
@@ -25,13 +25,13 @@
   	align-items: center;
   	justify-content: space-around;
    	-webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    	-moz-transition: all 0.5s ease;
+    	-o-transition: all 0.5s ease;
+    	transition: all 0.5s ease;
 }
 .fixed-label
 {
-	  text-align:center;
+	text-align:center;
  }
 .active-orange {
   	cursor: pointer;
@@ -159,21 +159,20 @@
   	transition: all 0.5s ease;
 }
 .fund-close {
-	  padding-top:32px;
-	  padding-right:100px;
-	  font-size:20px;
-	  flex:0.15;
-	  order:4;
-    float: right;
-    color: #616161;
-    cursor:pointer;
+	padding-top:32px;
+	padding-right:100px;
+	font-size:20px;
+	flex:0.15;
+	order:4;
+    	float: right;
+    	color: #616161;
+    	cursor:pointer;
 }
 .fund-head{
 	  padding:64px 100px 0px 100px;
 }
 .fund-desc{
 	  padding:2px 100px 0px 100px;
-	
 }
 .fundbox
 { 
@@ -199,23 +198,23 @@
 	  order:2;
 }
 .other-table{
-	  overflow-x: auto;
-	  flex:;
-	  order:2;
+	overflow-x: auto;
+	flex:;
+	order:2;
 }
 .other-fund-table{
-	  width: 100%;
+	width: 100%;
    	border-collapse: collapse;
 }
 .other-fund-h,.other-fund-d
  {
-    padding: 10px 10px 10px 0px;
-    border-bottom: 1px solid #ccc;
-    text-align: left;}
+    	padding: 10px 10px 10px 0px;
+    	border-bottom: 1px solid #ccc;
+    	text-align: left;}
 .other-fund-h:last-child ,.other-fund-d:last-child
  {
- 	  padding: 10px 0px 10px 0px;
-    border-bottom: 1px solid #ccc;
-    text-align: left;
+ 	padding: 10px 0px 10px 0px;
+    	border-bottom: 1px solid #ccc;
+    	text-align: left;
 }
 /*Code ends: CSS for Flexbox in Connect America Landing Page*/
