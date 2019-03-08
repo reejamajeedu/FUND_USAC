@@ -13,7 +13,6 @@ jQuery.when(getdefaultSum(),getdefaultSer(),getdefaultState()).
             "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Price Cap"+"</p>"+
             "<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+"</div>" +
            "</div>" );
-
           });   
 
 })
@@ -21,9 +20,7 @@ function getdefaultSum(){
     var dfd = jQuery.Deferred();
      var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20LIMIT%20999999999", function(data) {
-            //var url = "https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' LIMIT 999999999";
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' LIMIT 999999999", function(data) {
+                jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' LIMIT 999999999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
                     obj.value = val.SUM_amount_disbursed;
@@ -37,7 +34,6 @@ function getdefaultSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
              var dt = new Date();
-             //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
               jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 LIMIT 999999999 |> SELECT COUNT(*) ", function(data) { 
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
@@ -50,7 +46,6 @@ function getdefaultState(){
  var dfd = jQuery.Deferred();
             var obj = {};
              var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20state<>%27PW%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
              jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {   
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -77,16 +72,9 @@ function amountFormatter(value) {
                                 if (value >= billion && value <= trillion) {
                                                 return Math.round(value/billion*100)/100 + ' Billion';   
                                 }
-                                //else {
-                                //                return Math.round(value/trillion*100)/100 + ' Trillion';   
-                                //}
-                               //activate the below code for remove NaN
                                if (value >= trillion){
                                                return Math.round(value/trillion*100)/100 + ' Trillion';   
                                 }
-                               // else{
-                                //return 'NaN';
-                                //}
                                 else (isNaN(value))
                                 {
                                     return 0;
@@ -119,9 +107,7 @@ jQuery("#cacm").click(function(){
         jQuery('#other').removeClass('active-orange');
         jQuery('#other').addClass('other');
             jQuery("#fund-info-default").hide();
-            //jQuery("#fund-info-cacm").show();
-            jQuery("#fund-info-cacm").slideDown("slow");
-            //jQuery("#fund-info-cacm").fadeIn();
+            jQuery("#fund-info-cacm").show();
             jQuery("#fund-info-fhcs").hide();
             jQuery("#fund-info-bls").hide();
             jQuery("#fund-info-acam").hide();
@@ -163,8 +149,7 @@ jQuery("#cacm").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                    jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(getcacmSum(),getcacmSer(),getcacmState()).
@@ -179,14 +164,12 @@ jQuery.when(getcacmSum(),getcacmSer(),getcacmState()).
             "<div class='state-fund'>"+ "<h6>"+ "States and Territories" +"</h6>" + "<h2 style='margin:0px;'>" + obj3.value + "</h2>"+
             "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Price Cap"+"</p>"+
             "</div>" +"</div>" );
-            jQuery("#fund-info-cacm").hide().slideDown("slow");
           });
 })
 function getcacmSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27CACM%27%20LIMIT%20999", function(data) {
              jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='CACM' LIMIT 999", function(data) {   
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -200,7 +183,6 @@ function getcacmSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20%20%20fund_type=%27CACM%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='CACM' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
@@ -213,7 +195,6 @@ function getcacmState(){
  var dfd = jQuery.Deferred();
             var obj = {};
               var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed%3C%3E0%20AND%20state%3C%3E%27PW%27%20AND%20fund_type=%27CACM%27%20LIMIT%20999999999%20|%3E%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='CACM' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -225,138 +206,7 @@ return dfd.promise();
 }
 /* Code End: CACM */
 
-/* Code for FHCS */
-jQuery("#fhcs").click(function(){
-        jQuery('#fhcs').removeClass('fhcs');
-        jQuery(this).addClass('active-orange');
-        jQuery('#cacm').removeClass('active-orange');
-        jQuery('#cacm').addClass('cacm');
-        jQuery('#bls').removeClass('active-orange');
-        jQuery('#bls').addClass('bls');
-        jQuery('#acam').removeClass('active-orange');
-        jQuery('#acam').addClass('acam');
-        jQuery('#hcl').removeClass('active-orange');
-        jQuery('#hcl').addClass('hcl');
-        jQuery('#icc').removeClass('active-orange');
-        jQuery('#icc').addClass('icc');
-        jQuery('#akplan').removeClass('active-orange');
-        jQuery('#akplan').addClass('akplan');
-        jQuery('#mobility').removeClass('active-orange');
-        jQuery('#mobility').addClass('mobility');
-        jQuery('#rbe').removeClass('active-orange');
-        jQuery('#rbe').addClass('rbe');
-        jQuery('#other').removeClass('active-orange');
-        jQuery('#other').addClass('other');
-            jQuery("#fund-info-default").hide();
-            jQuery("#fund-info-cacm").hide();
-            //jQuery("#fund-info-fhcs").show();
-            jQuery("#fund-info-fhcs").slideDown("slow");
-            jQuery("#fund-info-bls").hide();
-            jQuery("#fund-info-acam").hide();
-            jQuery("#fund-info-hcl").hide();
-            jQuery("#fund-info-icc").hide();
-            jQuery("#fund-info-akplan").hide();
-            jQuery("#fund-info-mobility").hide();
-            jQuery("#fund-info-rbe").hide();
-            jQuery("#fund-info-other").hide();
-            jQuery(".fund-close").show();
-            jQuery(".fund-close").click(function() {
-                jQuery('#cacm').addClass('cacm');
-                jQuery('#cacm').removeClass('active-orange');
-                jQuery('#fhcs').addClass('fhcs');
-                jQuery('#fhcs').removeClass('active-orange');
-                jQuery('#bls').removeClass('active-orange');
-                jQuery('#bls').addClass('bls');
-                jQuery('#acam').removeClass('active-orange');
-                jQuery('#acam').addClass('acam');
-                jQuery('#hcl').removeClass('active-orange');
-                jQuery('#hcl').addClass('hcl');
-                jQuery('#icc').removeClass('active-orange');
-                jQuery('#icc').addClass('icc');
-                jQuery('#akplan').removeClass('active-orange');
-                jQuery('#akplan').addClass('akplan');
-                jQuery('#mobility').removeClass('active-orange');
-                jQuery('#mobility').addClass('mobility');
-                jQuery('#rbe').removeClass('active-orange');
-                jQuery('#rbe').addClass('rbe');
-                jQuery('#other').removeClass('active-orange');
-                jQuery('#other').addClass('other');
-                    jQuery("#fund-info-cacm").hide();
-                    jQuery("#fund-info-fhcs").hide();
-                    jQuery("#fund-info-bls").hide();
-                    jQuery("#fund-info-acam").hide();
-                    jQuery("#fund-info-hcl").hide();
-                    jQuery("#fund-info-icc").hide();
-                    jQuery("#fund-info-akplan").hide();
-                    jQuery("#fund-info-mobility").hide();
-                    jQuery("#fund-info-rbe").hide();
-                    jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                    jQuery("#fund-info-default").slideDown("slow");
-                    jQuery(".fund-close").hide();
-});
-jQuery.when(getfhcsSum(),getfhcsSer(),getfhcsState()).
-          then(function(obj1,obj2,obj3)
-           {
-          
-           jQuery("#fund-info-fhcs").html("<div class='fund-head'>"+"<h2 style='color:#FF7500;'>"+"Frozen High CostSupport (FHCS)"+"</h2>"+"</div>"+
-            "<div class='fund-desc'>"+"<p>"+"Provides High Cost Program support frozen at December 2011 levels to help carriers transition from legacy programs focused on voice service to modernized funds that support and expand broadband availability."+"</p>"+"</div>"+
-            "<div class='fundbox'>"+"<div class='total-fund'>"+"<h5>"+ "Total Funding" + "</h5>" + "<h1>"+"$"+ amountFormatter(obj1.value) + "</h1>" +"</div>"+
-            "<div class='service-fund'>"+"<h6>"+"Service Providers" +"</h6>"+ "<h2 style='margin:0px;'>" + obj2.value + "</h2>"+
-            "<h6>"+"Start Date"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Jan 2012"+"</p>"+"</div>"+
-            "<div class='state-fund'>"+ "<h6>"+ "States and Territories" +"</h6>" + "<h2 style='margin:0px;'>" + obj3.value + "</h2>"+
-            "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Price Cap"+"</p>"+
-            "<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
-            "</div>" +"</div>" );
-           jQuery("#fund-info-fhcs").hide().slideDown("slow");
 
-          });
-})
-
-function getfhcsSum(){
- var dfd = jQuery.Deferred();
-            var obj = {};
-            var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27FHCS%27%20LIMIT%20999999999", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='FHCS' LIMIT 999999999", function(data) {
-                jQuery.each(data, function(key,val) {
-                    obj.key = key;
-                    obj.value = val.SUM_amount_disbursed;
-                });
-                dfd.resolve(obj);
-            });
-return dfd.promise();
-}
-
-function getfhcsSer(){
- var dfd = jQuery.Deferred();
-            var obj = {};
-            var dt = new Date();
-           // jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20%20%20fund_type=%27FHCS%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='FHCS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
-                jQuery.each(data, function(key,val) {
-                    obj.value = val.COUNT;
-                });
-                dfd.resolve(obj);
-            });
-            return dfd.promise();
-}
-function getfhcsState(){
- var dfd = jQuery.Deferred();
-            var obj = {};
-            var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20state<>%27PW%27%20AND%20fund_type=%27FHCS%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='FHCS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {    
-                jQuery.each(data, function(key,val) {
-                    obj.key = key;
-                    obj.value = val.COUNT;
-                });
-                dfd.resolve(obj);
-            });
-return dfd.promise();
-}
-
-/* Code Ends : FHCS */
 
 /* Code for CAF BLS */
 jQuery("#bls").click(function(){
@@ -383,8 +233,7 @@ jQuery("#bls").click(function(){
             jQuery("#fund-info-default").hide();
             jQuery("#fund-info-cacm").hide();
             jQuery("#fund-info-fhcs").hide();
-            //jQuery("#fund-info-bls").show();
-            jQuery("#fund-info-bls").slideDown("slow");
+            jQuery("#fund-info-bls").show();
             jQuery("#fund-info-acam").hide();
             jQuery("#fund-info-hcl").hide();
             jQuery("#fund-info-icc").hide();
@@ -424,8 +273,7 @@ jQuery("#bls").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                    jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(getblsSum(),getblsSer(),getblsState()).
@@ -440,8 +288,6 @@ jQuery.when(getblsSum(),getblsSer(),getblsState()).
             "<div class='state-fund'>"+ "<h6>"+ "States and Territories" +"</h6>" + "<h2 style='margin:0px;'>" + obj3.value + "</h2>"+
             "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
             "</div>" +"</div>" );
-         jQuery("#fund-info-bls").hide().slideDown("slow");
-
           });
 })
 
@@ -449,7 +295,6 @@ function getblsSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27BLS%27%20LIMIT%20999", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='BLS' LIMIT 999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -464,7 +309,6 @@ function getblsSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20%20%20fund_type=%27BLS%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='BLS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
@@ -477,7 +321,6 @@ function getblsState(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed%3C%3E0%20AND%20state%3C%3E%27PW%27%20AND%20fund_type=%27BLS%27%20LIMIT%20999999999%20|%3E%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='BLS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -489,17 +332,16 @@ return dfd.promise();
 }
 
 /* Code Ends : CAF BLS */
-
-/* Code for ACAM */
-jQuery("#acam").click(function(){
-        jQuery('#acam').removeClass('acam');
+/* Code for FHCS */
+jQuery("#fhcs").click(function(){
+        jQuery('#fhcs').removeClass('fhcs');
         jQuery(this).addClass('active-orange');
         jQuery('#cacm').removeClass('active-orange');
         jQuery('#cacm').addClass('cacm');
         jQuery('#bls').removeClass('active-orange');
         jQuery('#bls').addClass('bls');
-        jQuery('#fhcs').removeClass('active-orange');
-        jQuery('#fhcs').addClass('fhcs');
+        jQuery('#acam').removeClass('active-orange');
+        jQuery('#acam').addClass('acam');
         jQuery('#hcl').removeClass('active-orange');
         jQuery('#hcl').addClass('hcl');
         jQuery('#icc').removeClass('active-orange');
@@ -514,10 +356,9 @@ jQuery("#acam").click(function(){
         jQuery('#other').addClass('other');
             jQuery("#fund-info-default").hide();
             jQuery("#fund-info-cacm").hide();
-            jQuery("#fund-info-fhcs").hide();
+            jQuery("#fund-info-fhcs").show();
             jQuery("#fund-info-bls").hide();
-            //jQuery("#fund-info-acam").show();
-            jQuery("#fund-info-acam").slideDown("slow");
+            jQuery("#fund-info-acam").hide();
             jQuery("#fund-info-hcl").hide();
             jQuery("#fund-info-icc").hide();
             jQuery("#fund-info-akplan").hide();
@@ -556,33 +397,30 @@ jQuery("#acam").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                     jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
-jQuery.when(getacamSum(),getacamSer(),getacamState()).
+jQuery.when(getfhcsSum(),getfhcsSer(),getfhcsState()).
           then(function(obj1,obj2,obj3)
            {
           
-           jQuery("#fund-info-acam").html("<div class='fund-head'>"+"<h2 style='color:#FF7500;'>"+"Alternative Connect America Model (ACAM)"+"</h2>"+"</div>"+
-            "<div class='fund-desc'>"+"<p>"+"Provides support to Rate-of-Return carriers that voluntarily elected to transition to a new cost model for calculating High Cost funding. ACAM models forward-looking economic costs of deploying and operating a fiber-to-the-premise (FTTP) network."+"</p>"+"</div>"+
-            "<div class='fundbox'>"+"<div class='total-fund'>"+"<h5>"+ "Total Funding" + "</h5>" + "<h1>"+"$"+ amountFormatter(obj1.value)+ "</h1>" +"</div>"+
+           jQuery("#fund-info-fhcs").html("<div class='fund-head'>"+"<h2 style='color:#FF7500;'>"+"Frozen High CostSupport (FHCS)"+"</h2>"+"</div>"+
+            "<div class='fund-desc'>"+"<p>"+"Provides High Cost Program support frozen at December 2011 levels to help carriers transition from legacy programs focused on voice service to modernized funds that support and expand broadband availability."+"</p>"+"</div>"+
+            "<div class='fundbox'>"+"<div class='total-fund'>"+"<h5>"+ "Total Funding" + "</h5>" + "<h1>"+"$"+ amountFormatter(obj1.value) + "</h1>" +"</div>"+
             "<div class='service-fund'>"+"<h6>"+"Service Providers" +"</h6>"+ "<h2 style='margin:0px;'>" + obj2.value + "</h2>"+
-            "<h6>"+"Start Date"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Jan 2017"+"</p>"+"</div>"+
+            "<h6>"+"Start Date"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Jan 2012"+"</p>"+"</div>"+
             "<div class='state-fund'>"+ "<h6>"+ "States and Territories" +"</h6>" + "<h2 style='margin:0px;'>" + obj3.value + "</h2>"+
-            "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
+            "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Price Cap"+"</p>"+
+            "<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
             "</div>" +"</div>" );
-           jQuery("#fund-info-acam").hide().slideDown("slow");
-
           });
 })
 
-function getacamSum(){
+function getfhcsSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27ACAM%27%20LIMIT%20999", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='ACAM' LIMIT 999", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='FHCS' LIMIT 999999999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
                     obj.value = val.SUM_amount_disbursed;
@@ -592,12 +430,11 @@ function getacamSum(){
 return dfd.promise();
 }
 
-function getacamSer(){
+function getfhcsSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20%20%20fund_type=%27ACAM%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='ACAM' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='FHCS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
                 });
@@ -605,12 +442,11 @@ function getacamSer(){
             });
             return dfd.promise();
 }
-function getacamState(){
+function getfhcsState(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed%3C%3E0%20AND%20state%3C%3E%27PW%27%20AND%20fund_type=%27ACAM%27%20LIMIT%20999999999%20|%3E%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='ACAM' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='FHCS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {    
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
                     obj.value = val.COUNT;
@@ -620,19 +456,20 @@ function getacamState(){
 return dfd.promise();
 }
 
-/* Code Ends : ACAM*/
-/* Code for HCL */
-jQuery("#hcl").click(function(){
-        jQuery('#hcl').removeClass('hcl');
+/* Code Ends : FHCS */
+
+/* Code for ACAM */
+jQuery("#acam").click(function(){
+        jQuery('#acam').removeClass('acam');
         jQuery(this).addClass('active-orange');
         jQuery('#cacm').removeClass('active-orange');
         jQuery('#cacm').addClass('cacm');
         jQuery('#bls').removeClass('active-orange');
         jQuery('#bls').addClass('bls');
-        jQuery('#acam').removeClass('active-orange');
-        jQuery('#acam').addClass('acam');
         jQuery('#fhcs').removeClass('active-orange');
         jQuery('#fhcs').addClass('fhcs');
+        jQuery('#hcl').removeClass('active-orange');
+        jQuery('#hcl').addClass('hcl');
         jQuery('#icc').removeClass('active-orange');
         jQuery('#icc').addClass('icc');
         jQuery('#akplan').removeClass('active-orange');
@@ -647,9 +484,8 @@ jQuery("#hcl").click(function(){
             jQuery("#fund-info-cacm").hide();
             jQuery("#fund-info-fhcs").hide();
             jQuery("#fund-info-bls").hide();
-            jQuery("#fund-info-acam").hide();
-            //jQuery("#fund-info-hcl").show();
-            jQuery("#fund-info-hcl").slideDown("slow");
+            jQuery("#fund-info-acam").show();
+            jQuery("#fund-info-hcl").hide();
             jQuery("#fund-info-icc").hide();
             jQuery("#fund-info-akplan").hide();
             jQuery("#fund-info-mobility").hide();
@@ -687,8 +523,132 @@ jQuery("#hcl").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                     jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
+                    jQuery(".fund-close").hide();
+});
+jQuery.when(getacamSum(),getacamSer(),getacamState()).
+          then(function(obj1,obj2,obj3)
+           {
+          
+           jQuery("#fund-info-acam").html("<div class='fund-head'>"+"<h2 style='color:#FF7500;'>"+"Alternative Connect America Model (ACAM)"+"</h2>"+"</div>"+
+            "<div class='fund-desc'>"+"<p>"+"Provides support to Rate-of-Return carriers that voluntarily elected to transition to a new cost model for calculating High Cost funding. ACAM models forward-looking economic costs of deploying and operating a fiber-to-the-premise (FTTP) network."+"</p>"+"</div>"+
+            "<div class='fundbox'>"+"<div class='total-fund'>"+"<h5>"+ "Total Funding" + "</h5>" + "<h1>"+"$"+ amountFormatter(obj1.value)+ "</h1>" +"</div>"+
+            "<div class='service-fund'>"+"<h6>"+"Service Providers" +"</h6>"+ "<h2 style='margin:0px;'>" + obj2.value + "</h2>"+
+            "<h6>"+"Start Date"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Jan 2017"+"</p>"+"</div>"+
+            "<div class='state-fund'>"+ "<h6>"+ "States and Territories" +"</h6>" + "<h2 style='margin:0px;'>" + obj3.value + "</h2>"+
+            "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
+            "</div>" +"</div>" );
+          });
+})
+
+function getacamSum(){
+ var dfd = jQuery.Deferred();
+            var obj = {};
+            var dt = new Date();
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='ACAM' LIMIT 999", function(data) {
+                jQuery.each(data, function(key,val) {
+                    obj.key = key;
+                    obj.value = val.SUM_amount_disbursed;
+                });
+                dfd.resolve(obj);
+            });
+return dfd.promise();
+}
+
+function getacamSer(){
+ var dfd = jQuery.Deferred();
+            var obj = {};
+            var dt = new Date();
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='ACAM' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+                jQuery.each(data, function(key,val) {
+                    obj.value = val.COUNT;
+                });
+                dfd.resolve(obj);
+            });
+            return dfd.promise();
+}
+function getacamState(){
+ var dfd = jQuery.Deferred();
+            var obj = {};
+            var dt = new Date();
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='ACAM' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+                jQuery.each(data, function(key,val) {
+                    obj.key = key;
+                    obj.value = val.COUNT;
+                });
+                dfd.resolve(obj);
+            });
+return dfd.promise();
+}
+
+/* Code Ends : ACAM*/
+
+/* Code for HCL */
+jQuery("#hcl").click(function(){
+        jQuery('#hcl').removeClass('hcl');
+        jQuery(this).addClass('active-orange');
+        jQuery('#cacm').removeClass('active-orange');
+        jQuery('#cacm').addClass('cacm');
+        jQuery('#bls').removeClass('active-orange');
+        jQuery('#bls').addClass('bls');
+        jQuery('#acam').removeClass('active-orange');
+        jQuery('#acam').addClass('acam');
+        jQuery('#fhcs').removeClass('active-orange');
+        jQuery('#fhcs').addClass('fhcs');
+        jQuery('#icc').removeClass('active-orange');
+        jQuery('#icc').addClass('icc');
+        jQuery('#akplan').removeClass('active-orange');
+        jQuery('#akplan').addClass('akplan');
+        jQuery('#mobility').removeClass('active-orange');
+        jQuery('#mobility').addClass('mobility');
+        jQuery('#rbe').removeClass('active-orange');
+        jQuery('#rbe').addClass('rbe');
+        jQuery('#other').removeClass('active-orange');
+        jQuery('#other').addClass('other');
+            jQuery("#fund-info-default").hide();
+            jQuery("#fund-info-cacm").hide();
+            jQuery("#fund-info-fhcs").hide();
+            jQuery("#fund-info-bls").hide();
+            jQuery("#fund-info-acam").hide();
+            jQuery("#fund-info-hcl").show();
+            jQuery("#fund-info-icc").hide();
+            jQuery("#fund-info-akplan").hide();
+            jQuery("#fund-info-mobility").hide();
+            jQuery("#fund-info-rbe").hide();
+            jQuery("#fund-info-other").hide();
+            jQuery(".fund-close").show();
+            jQuery(".fund-close").click(function() {
+                jQuery('#cacm').addClass('cacm');
+                jQuery('#cacm').removeClass('active-orange');
+                jQuery('#fhcs').addClass('fhcs');
+                jQuery('#fhcs').removeClass('active-orange');
+                jQuery('#bls').removeClass('active-orange');
+                jQuery('#bls').addClass('bls');
+                jQuery('#acam').removeClass('active-orange');
+                jQuery('#acam').addClass('acam');
+                jQuery('#hcl').removeClass('active-orange');
+                jQuery('#hcl').addClass('hcl');
+                jQuery('#icc').removeClass('active-orange');
+                jQuery('#icc').addClass('icc');
+                jQuery('#akplan').removeClass('active-orange');
+                jQuery('#akplan').addClass('akplan');
+                jQuery('#mobility').removeClass('active-orange');
+                jQuery('#mobility').addClass('mobility');
+                jQuery('#rbe').removeClass('active-orange');
+                jQuery('#rbe').addClass('rbe');
+                jQuery('#other').removeClass('active-orange');
+                jQuery('#other').addClass('other');
+                    jQuery("#fund-info-cacm").hide();
+                    jQuery("#fund-info-fhcs").hide();
+                    jQuery("#fund-info-bls").hide();
+                    jQuery("#fund-info-acam").hide();
+                    jQuery("#fund-info-hcl").hide();
+                    jQuery("#fund-info-icc").hide();
+                    jQuery("#fund-info-akplan").hide();
+                    jQuery("#fund-info-mobility").hide();
+                    jQuery("#fund-info-rbe").hide();
+                    jQuery("#fund-info-other").hide();
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(gethclSum(),gethclSer(),gethclState()).
@@ -705,7 +665,6 @@ jQuery.when(gethclSum(),gethclSer(),gethclState()).
             "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Price Cap"+"</p>"+
             "<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
             "</div>" +"</div>" );
-           jQuery("#fund-info-hcl").hide().slideDown("slow");
           });
 })
 
@@ -713,8 +672,7 @@ function gethclSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type%20IN%20(%27HCL%27,%27SVS%27)%20LIMIT%20999999999", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type IN ('HCL','SVS') LIMIT 999999999", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type IN ('HCL') LIMIT 999999999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
                     obj.value = val.SUM_amount_disbursed;
@@ -728,8 +686,7 @@ function gethclSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20%20%20fund_type%20IN%20(%27HCL%27,%27SVS%27)%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type IN ('HCL','SVS') LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type IN ('HCL') LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
                 });
@@ -741,8 +698,7 @@ function gethclState(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20state<>%27PW%27%20AND%20%20%20fund_type%20IN%20(%27HCL%27,%27SVS%27)%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND   fund_type IN ('HCL','SVS') LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND   fund_type IN ('HCL') LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
                     obj.value = val.COUNT;
@@ -782,8 +738,7 @@ jQuery("#icc").click(function(){
             jQuery("#fund-info-bls").hide();
             jQuery("#fund-info-acam").hide();
             jQuery("#fund-info-hcl").hide();
-            //jQuery("#fund-info-icc").show();
-            jQuery("#fund-info-icc").slideDown("slow");
+            jQuery("#fund-info-icc").show();
             jQuery("#fund-info-akplan").hide();
             jQuery("#fund-info-mobility").hide();
             jQuery("#fund-info-rbe").hide();
@@ -820,8 +775,7 @@ jQuery("#icc").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                     jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(geticcSum(),geticcSer(),geticcState()).
@@ -838,7 +792,6 @@ jQuery.when(geticcSum(),geticcSer(),geticcState()).
             "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Price Cap"+"</p>"+
             "<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
             "</div>" +"</div>" );
-          jQuery("#fund-info-icc").hide().slideDown("slow");
           });
 })
 
@@ -846,7 +799,6 @@ function geticcSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27ICC%27%20LIMIT%20999999999", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='ICC' LIMIT 999999999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -861,7 +813,6 @@ function geticcSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20%20%20fund_type=%27ICC%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='ICC' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
@@ -874,7 +825,6 @@ function geticcState(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20state<>%27PW%27%20AND%20fund_type=%27ICC%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='ICC' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {    
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -915,8 +865,7 @@ jQuery("#akplan").click(function(){
             jQuery("#fund-info-acam").hide();
             jQuery("#fund-info-hcl").hide();
             jQuery("#fund-info-icc").hide();
-            //jQuery("#fund-info-akplan").show();
-            jQuery("#fund-info-akplan").slideDown("slow");
+            jQuery("#fund-info-akplan").show();
             jQuery("#fund-info-mobility").hide();
             jQuery("#fund-info-rbe").hide();
             jQuery("#fund-info-other").hide();
@@ -952,8 +901,7 @@ jQuery("#akplan").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                     jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(getakplanSum(),getakplanSer(),getakplanState()).
@@ -970,7 +918,6 @@ jQuery.when(getakplanSum(),getakplanSer(),getakplanState()).
             "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Rate-of-Return"+"</p>"+
             "<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Wireless"+"</p>"+
             "</div>" +"</div>" );
-           jQuery("#fund-info-akplan").hide().slideDown("slow");
           });
 })
 
@@ -978,7 +925,6 @@ function getakplanSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27AK%20PLAN%27%20LIMIT%20999999999", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='AK PLAN' LIMIT 999999999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -993,7 +939,6 @@ function getakplanSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=%20SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20fund_type=%27AK%20PLAN%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query= SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND fund_type='AK PLAN' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
@@ -1006,7 +951,6 @@ function getakplanState(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20state<>%27PW%27%20AND%20fund_type=%27AK%20PLAN%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='AK PLAN' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -1018,7 +962,7 @@ return dfd.promise();
 }
 
 /* Code Ends : AK PLAN*/
-/* Code for MOBILITY I */
+/* Code for MOBILITY I , changed this for SVS until we get MOBILITY II   */
 jQuery("#mobility").click(function(){
         jQuery('#mobility').removeClass('mobility');
         jQuery(this).addClass('active-orange');
@@ -1048,8 +992,7 @@ jQuery("#mobility").click(function(){
             jQuery("#fund-info-hcl").hide();
             jQuery("#fund-info-icc").hide();
             jQuery("#fund-info-akplan").hide();
-            //jQuery("#fund-info-mobility").show();
-            jQuery("#fund-info-mobility").slideDown("slow");
+            jQuery("#fund-info-mobility").show();
             jQuery("#fund-info-rbe").hide();
             jQuery("#fund-info-other").hide();
             jQuery(".fund-close").show();
@@ -1084,16 +1027,15 @@ jQuery("#mobility").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                    jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(getMobSum(),getMobSer(),getMobState()).
           then(function(obj1,obj2,obj3)
            {
           
-          jQuery("#fund-info-mobility").html("<div class='fund-head'>"+"<h2 style='color:#FF7500;'>"+"Mobility Fund Phase I (MFI)"+"</h2>"+"</div>"+
-            "<div class='fund-desc'>"+"<p>"+"Provides one-time support in three payments to accelerate deployment of networks for mobile voice and broadband services in unserved areas. "+"</p>"+"</div>"+
+          jQuery("#fund-info-mobility").html("<div class='fund-head'>"+"<h2 style='color:#FF7500;'>"+"Safety Valve Support (SVS)"+"</h2>"+"</div>"+
+            "<div class='fund-desc'>"+"<p>"+"Provides additional support above the HCL cap that is available to rural carriers that acquire high-cost exchanges and make substantial investments in those exchanges to enhance network infrastructure."+"</p>"+"</div>"+
             "<div class='fundbox'>"+
             "<div class='total-fund'>"+"<h5>"+ "Total Funding" + "</h5>" + "<h1>"+"$"+ amountFormatter(obj1.value) + "</h1>" +"</div>"+
             "<div class='service-fund'>"+"<h6>"+"Service Providers" +"</h6>"+ "<h2 style='margin:0px;'>" + obj2.value + "</h2>"+
@@ -1101,7 +1043,6 @@ jQuery.when(getMobSum(),getMobSer(),getMobState()).
             "<div class='state-fund'>"+ "<h6>"+ "States and Territories" +"</h6>" + "<h2 style='margin:0px;'>" + obj3.value + "</h2>"+
              "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Wireless"+"</p>"+
             "</div>" +"</div>" );
-            jQuery("#fund-info-mobility").hide().slideDown("slow");
           });
 })
 
@@ -1109,9 +1050,7 @@ function getMobSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27Mobility%20I%27%20LIMIT%20999", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='Mobility I' LIMIT 999", function(data) {
-
+        jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='SVS' LIMIT 999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
                     obj.value = val.SUM_amount_disbursed;
@@ -1125,8 +1064,7 @@ function getMobSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=%20SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20fund_type=%27Mobility%20I%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query= SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND fund_type='Mobility I' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query= SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND fund_type='SVS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
                 });
@@ -1138,8 +1076,7 @@ function getMobState(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed%3C%3E0%20AND%20state%3C%3E%27PW%27%20AND%20fund_type=%27Mobility%20I%27%20LIMIT%20999999999%20|%3E%20SELECT%20COUNT(*)", function(data) {
-            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='Mobility I' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
+            jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='SVS' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
                     obj.value = val.COUNT;
@@ -1148,7 +1085,7 @@ function getMobState(){
             });
 return dfd.promise();
 }
-/* Code Ends : MOBILITY I*/
+/* Code Ends : MOBILITY I , changed this for SVS until we get MOBILITY II   */
 
 /* Code for RBE */
 jQuery("#rbe").click(function(){
@@ -1181,8 +1118,7 @@ jQuery("#rbe").click(function(){
             jQuery("#fund-info-icc").hide();
             jQuery("#fund-info-akplan").hide();
             jQuery("#fund-info-mobility").hide();
-            //jQuery("#fund-info-rbe").show();
-            jQuery("#fund-info-rbe").slideDown("slow");
+            jQuery("#fund-info-rbe").show();
             jQuery("#fund-info-other").hide();
             jQuery(".fund-close").show();
             jQuery(".fund-close").click(function() {
@@ -1216,8 +1152,7 @@ jQuery("#rbe").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                    jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(getrbeSum(),getrbeSer(),getrbeState()).
@@ -1232,7 +1167,6 @@ jQuery.when(getrbeSum(),getrbeSer(),getrbeState()).
             "<div class='state-fund'>"+ "<h6>"+ "States and Territories" +"</h6>" + "<h2 style='margin:0px;'>" + obj3.value + "</h2>"+
              "<h6>"+"Carrier Types"+"</h6>"+"<p class='indi-long-form-text__p--intro' style='margin:0px;'>"+"Price Cap"+"</p>"+
             "</div>"+"</div>" );
-           jQuery("#fund-info-rbe").hide().slideDown("slow");
           });
           
 })
@@ -1241,7 +1175,6 @@ function getrbeSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type=%27RBE%27%20LIMIT%20999999999", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type='RBE' LIMIT 999999999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -1256,7 +1189,6 @@ function getrbeSer(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20study_area_code%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20%20%20fund_type=%27RBE%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT study_area_code WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND   fund_type='RBE' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.value = val.COUNT;
@@ -1269,7 +1201,6 @@ function getrbeState(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20DISTINCT%20state%20WHERE%20year=%20%272017%27%20AND%20amount_disbursed<>0%20AND%20state<>%27PW%27%20AND%20fund_type=%27RBE%27%20LIMIT%20999999999%20|>%20SELECT%20COUNT(*)", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT DISTINCT state WHERE year= '"+dt.getFullYear()+"' AND amount_disbursed<>0 AND state<>'PW' AND fund_type='RBE' LIMIT 999999999 |> SELECT COUNT(*)", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
@@ -1313,8 +1244,7 @@ jQuery("#other").click(function(){
             jQuery("#fund-info-akplan").hide();
             jQuery("#fund-info-mobility").hide();
             jQuery("#fund-info-rbe").hide();
-            //jQuery("#fund-info-other").show();
-            jQuery("#fund-info-other").slideDown("slow");
+            jQuery("#fund-info-other").show();
             jQuery(".fund-close").show();
             jQuery(".fund-close").click(function() {
                 jQuery('#cacm').addClass('cacm');
@@ -1347,8 +1277,7 @@ jQuery("#other").click(function(){
                     jQuery("#fund-info-mobility").hide();
                     jQuery("#fund-info-rbe").hide();
                     jQuery("#fund-info-other").hide();
-                    //jQuery("#fund-info-default").show();
-                    jQuery("#fund-info-default").slideDown("slow");
+                    jQuery("#fund-info-default").show();
                     jQuery(".fund-close").hide();
 });
 jQuery.when(getotherSum()).
@@ -1374,7 +1303,6 @@ jQuery.when(getotherSum()).
                 "<tr>"+"<td class='other-fund-d'>"+"<p class='margin0top'>"+"Safety Net Additive"+"</p>"+"</td>"+"<td class='other-fund-d'>"+"<p class='margin0top'>"+"Jan 1998"+"</p>"+"</td>"+
                 "<td class='other-fund-d'>"+"<p class='margin0top'>"+"Jul 2004"+"</p>"+"</td>"+"</tr>"+
                 "</tbody>"+"</table>"+"</div>" );
-           jQuery("#fund-info-other").hide().slideDown("slow");
           });
 })
 
@@ -1383,7 +1311,6 @@ function getotherSum(){
  var dfd = jQuery.Deferred();
             var obj = {};
             var dt = new Date();
-            //jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT%20SUM(amount_disbursed)%20WHERE%20year=%20%272017%27%20AND%20fund_type%20IN%20(%27ICLS%27,%27HCM%27,%27IAS%27,%27LSS%27,%27SNA%27,%27IS%27)%20LIMIT%20999999999", function(data) {
             jQuery.getJSON("https://opendata.usac.org/resource/htrz-a8mz.json?&$query=SELECT SUM(amount_disbursed) WHERE year= '"+dt.getFullYear()+"' AND fund_type IN ('ICLS','HCM','IAS','LSS','SNA','IS') LIMIT 999999999", function(data) {
                 jQuery.each(data, function(key,val) {
                     obj.key = key;
